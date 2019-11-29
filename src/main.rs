@@ -5,6 +5,7 @@ use std::io::{self, BufReader};
 mod answer;
 mod day1;
 mod day2;
+mod day3;
 
 struct Config {
     problem: String,
@@ -30,6 +31,8 @@ fn main() -> io::Result<()> {
         "day1b" => day1::day1b,
         "day2a" => day2::day2a,
         "day2b" => day2::day2b,
+        "day3a" => day3::day3a,
+        "day3b" => day3::day3b,
         _ => day1::day1a,
     };
     let result = solution(&mut reader)?;
