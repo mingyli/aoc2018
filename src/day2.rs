@@ -1,5 +1,6 @@
+use itertools::Itertools;
 use std::collections::{HashMap, HashSet};
-use std::io::{self, BufRead, Error, ErrorKind};
+use std::io::{self, BufRead};
 
 use crate::answer::Answer;
 
@@ -52,13 +53,10 @@ pub fn day2b<R: BufRead>(reader: &mut R) -> io::Result<Answer> {
         .lines()
         .map(|line| line.unwrap())
         .collect::<Vec<String>>();
-    for (i, s1) in ids.iter().enumerate() {
-        for s2 in ids[i + 1..].iter() {
-            let dist = hamming_distance(&s1, &s2);
-            if dist == 1 {
-                return Ok(Answer::S(common_chars(&s1, &s2)));
-            }
-        }
-    }
-    Err(Error::new(ErrorKind::InvalidData, "Bad answer."))
+    let (s1, s2) = ids
+        .iter()
+        .tuple_combinations::<(_, _)>()
+        .find(|(s1, s2)| hamming_distance(&s1, &s2) == 1)
+        .unwrap();
+    return Ok(Answer::S(common_chars(&s1, &s2)));
 }

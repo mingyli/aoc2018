@@ -1,7 +1,7 @@
 use itertools::Itertools;
 use regex::Regex;
 use std::collections::HashMap;
-use std::io::{self, BufRead, Error, ErrorKind};
+use std::io::{self, BufRead};
 
 use super::answer::Answer;
 
@@ -75,13 +75,9 @@ pub fn day3a<R: BufRead>(mut reader: &mut R) -> io::Result<Answer> {
 pub fn day3b<R: BufRead>(mut reader: &mut R) -> io::Result<Answer> {
     let claims = get_claims(&mut reader);
     let counter = get_counter(&claims);
-    for claim in claims {
-        if claim
-            .values()
-            .all(|(r, c)| *counter.get(&(r, c)).unwrap() == 1)
-        {
-            return Ok(Answer::S(claim.id));
-        }
-    }
-    Err(Error::new(ErrorKind::InvalidData, "Bad answer."))
+    let solitary = claims
+        .into_iter()
+        .find(|claim| claim.values().all(|pos| *counter.get(&pos).unwrap() == 1))
+        .unwrap();
+    Ok(Answer::S(solitary.id))
 }
