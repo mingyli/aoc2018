@@ -20,7 +20,7 @@ pub fn day1b<R: BufRead>(reader: &mut R) -> io::Result<Answer> {
         .into_iter()
         .cycle();
     let mut prefix_sums = diffs_stream.scan(0, |sum, diff| {
-        *sum = *sum + diff;
+        *sum += diff;
         Some(*sum)
     });
     let mut visited: HashSet<i32> = HashSet::new();

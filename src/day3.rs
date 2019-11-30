@@ -35,7 +35,7 @@ fn get_claims<R: BufRead>(reader: &mut R) -> Vec<Claim> {
         r"^#(?P<claim_id>\d+) @ (?P<column>\d+),(?P<row>\d+): (?P<width>\d+)x(?P<height>\d+)$",
     )
     .unwrap();
-    let claims = reader
+    reader
         .lines()
         .map(|line| line.unwrap())
         .map(|line| {
@@ -48,11 +48,10 @@ fn get_claims<R: BufRead>(reader: &mut R) -> Vec<Claim> {
                 cap["height"].parse::<u32>().unwrap(),
             )
         })
-        .collect::<Vec<Claim>>();
-    claims
+        .collect::<Vec<Claim>>()
 }
 
-fn get_counter(claims: &Vec<Claim>) -> HashMap<(u32, u32), u32> {
+fn get_counter(claims: &[Claim]) -> HashMap<(u32, u32), u32> {
     let mut counter: HashMap<(u32, u32), u32> = HashMap::new();
     for claim in claims {
         for (r, c) in claim.values() {

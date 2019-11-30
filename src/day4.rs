@@ -27,7 +27,7 @@ struct Event {
     guard: u32,
 }
 
-fn get_records<R: BufRead>(mut reader: &mut R) -> Vec<Record> {
+fn get_records<R: BufRead>(reader: &mut R) -> Vec<Record> {
     let pattern = Regex::new(r"^\[(?P<datetime>.+)\] (?P<description>.+)$").unwrap();
     let mut records = reader
         .lines()
@@ -47,12 +47,11 @@ fn get_records<R: BufRead>(mut reader: &mut R) -> Vec<Record> {
     records
 }
 
-fn get_events(records: &Vec<Record>) -> Vec<Event> {
+fn get_events(records: &[Record]) -> Vec<Event> {
     fn get_guard_id(record: &Record) -> u32 {
         let pattern = Regex::new(r"^Guard #(?P<id>\d+) begins shift$").unwrap();
         let cap = pattern.captures(&record.description).unwrap();
-        let id = cap["id"].parse::<u32>().unwrap();
-        id
+        cap["id"].parse::<u32>().unwrap()
     }
 
     let mut events: Vec<Event> = Vec::new();
@@ -98,18 +97,15 @@ impl Iterator for TimeRange {
     }
 }
 
-fn get_guard_sleep_times(events: &Vec<Event>) -> HashMap<u32, Vec<NaiveDateTime>> {
+fn get_guard_sleep_times(events: &[Event]) -> HashMap<u32, Vec<NaiveDateTime>> {
     let mut sleep_times = HashMap::new();
     for window in events.windows(2) {
         let event1: &Event = &window[0];
         let event2: &Event = &window[1];
         let guard = event1.guard;
-        match event1.action {
-            Action::FallAsleep => {
-                let minutes = sleep_times.entry(guard).or_insert(Vec::new());
-                minutes.extend(TimeRange(event1.datetime, event2.datetime));
-            }
-            _ => (),
+        if let Action::FallAsleep = event1.action {
+            let minutes = sleep_times.entry(guard).or_insert_with(Vec::new);
+            minutes.extend(TimeRange(event1.datetime, event2.datetime));
         }
     }
     sleep_times
@@ -123,7 +119,7 @@ fn get_guard_with_most_sleep(sleep_times: &HashMap<u32, Vec<NaiveDateTime>>) -> 
     *guard
 }
 
-fn get_minute_counter(sleep_times: &Vec<NaiveDateTime>) -> HashMap<u32, u32> {
+fn get_minute_counter(sleep_times: &[NaiveDateTime]) -> HashMap<u32, u32> {
     let mut counter = HashMap::new();
     for &time in sleep_times {
         let count = counter.entry(time.minute()).or_insert(0);

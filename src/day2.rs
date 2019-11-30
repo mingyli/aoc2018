@@ -5,7 +5,7 @@ use std::io::{self, BufRead};
 use crate::answer::Answer;
 
 pub fn day2a<R: BufRead>(reader: &mut R) -> io::Result<Answer> {
-    fn get_counter(string: &String) -> HashMap<char, u32> {
+    fn get_counter(string: &str) -> HashMap<char, u32> {
         let mut counter = HashMap::new();
         for ch in string.chars() {
             let count = counter.entry(ch).or_insert(0);
@@ -33,13 +33,13 @@ pub fn day2a<R: BufRead>(reader: &mut R) -> io::Result<Answer> {
 }
 
 pub fn day2b<R: BufRead>(reader: &mut R) -> io::Result<Answer> {
-    fn hamming_distance(s1: &String, s2: &String) -> u32 {
+    fn hamming_distance(s1: &str, s2: &str) -> u32 {
         s1.chars()
             .zip(s2.chars())
             .fold(0, |count, (ch1, ch2)| count + (ch1 != ch2) as u32)
     }
 
-    fn common_chars(s1: &String, s2: &String) -> String {
+    fn common_chars(s1: &str, s2: &str) -> String {
         let mut result = String::new();
         for (ch1, ch2) in s1.chars().zip(s2.chars()) {
             if ch1 == ch2 {
@@ -58,5 +58,5 @@ pub fn day2b<R: BufRead>(reader: &mut R) -> io::Result<Answer> {
         .tuple_combinations::<(_, _)>()
         .find(|(s1, s2)| hamming_distance(&s1, &s2) == 1)
         .unwrap();
-    return Ok(Answer::S(common_chars(&s1, &s2)));
+    Ok(Answer::S(common_chars(&s1, &s2)))
 }
