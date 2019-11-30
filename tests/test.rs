@@ -78,3 +78,21 @@ fn test_day4b() {
     };
     assert_eq!(answer::Answer::U(50966), run::run(&config).unwrap());
 }
+
+#[test]
+fn test_day5a() {
+    let config = config::Config {
+        problem: "day5a".to_string(),
+        filename: "./input/day5".to_string(),
+    };
+    assert_eq!(answer::Answer::US(11152), run::run(&config).unwrap());
+}
+
+#[test]
+fn test_day5b() {
+    let config = config::Config {
+        problem: "day5b".to_string(),
+        filename: "./input/day5".to_string(),
+    };
+    assert_eq!(answer::Answer::US(6136), run::run(&config).unwrap());
+}

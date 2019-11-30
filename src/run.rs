@@ -7,6 +7,7 @@ use crate::day1;
 use crate::day2;
 use crate::day3;
 use crate::day4;
+use crate::day5;
 
 pub fn run(config: &config::Config) -> io::Result<answer::Answer> {
     let file = File::open(config.filename.clone())?;
@@ -20,6 +21,8 @@ pub fn run(config: &config::Config) -> io::Result<answer::Answer> {
         "day3b" => day3::day3b,
         "day4a" => day4::day4a,
         "day4b" => day4::day4b,
+        "day5a" => day5::day5a,
+        "day5b" => day5::day5b,
         _ => day1::day1a,
     };
     solution(&mut reader)
