@@ -60,3 +60,21 @@ fn test_day3b() {
         run::run(&config).unwrap()
     );
 }
+
+#[test]
+fn test_day4a() {
+    let config = config::Config {
+        problem: "day4a".to_string(),
+        filename: "./input/day4".to_string(),
+    };
+    assert_eq!(answer::Answer::U(94542), run::run(&config).unwrap());
+}
+
+#[test]
+fn test_day4b() {
+    let config = config::Config {
+        problem: "day4b".to_string(),
+        filename: "./input/day4".to_string(),
+    };
+    assert_eq!(answer::Answer::U(50966), run::run(&config).unwrap());
+}
