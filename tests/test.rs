@@ -114,3 +114,24 @@ fn test_day6b() {
     };
     assert_eq!(answer::Answer::US(46542), run::run(&config).unwrap());
 }
+
+#[test]
+fn test_day7a() {
+    let config = config::Config {
+        problem: "day7a".to_string(),
+        filename: "./input/day7".to_string(),
+    };
+    assert_eq!(
+        answer::Answer::S("BFGKNRTWXIHPUMLQVZOYJACDSE".to_string()),
+        run::run(&config).unwrap()
+    );
+}
+
+#[test]
+fn test_day7b() {
+    let config = config::Config {
+        problem: "day7b".to_string(),
+        filename: "./input/day7".to_string(),
+    };
+    assert_eq!(answer::Answer::U(1163), run::run(&config).unwrap());
+}

@@ -1,14 +1,7 @@
 use std::fs::File;
 use std::io::{self, BufReader};
 
-use crate::answer;
-use crate::config;
-use crate::day1;
-use crate::day2;
-use crate::day3;
-use crate::day4;
-use crate::day5;
-use crate::day6;
+use crate::*;
 
 pub fn run(config: &config::Config) -> io::Result<answer::Answer> {
     let file = File::open(config.filename.clone())?;
@@ -26,6 +19,8 @@ pub fn run(config: &config::Config) -> io::Result<answer::Answer> {
         "day5b" => day5::day5b,
         "day6a" => day6::day6a,
         "day6b" => day6::day6b,
+        "day7a" => day7::day7a,
+        "day7b" => day7::day7b,
         _ => day1::day1a,
     };
     solution(&mut reader)
