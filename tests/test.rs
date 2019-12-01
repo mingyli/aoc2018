@@ -1,5 +1,5 @@
 extern crate aoc2018;
-use aoc2018::{answer, config, run};
+use aoc2018::{config, run};
 
 #[test]
 fn test_day1a() {
@@ -7,7 +7,7 @@ fn test_day1a() {
         problem: "day1a".to_string(),
         filename: "./input/day1".to_string(),
     };
-    assert_eq!(answer::Answer::I(470), run::run(&config).unwrap());
+    assert_eq!(470, run::run(&config).unwrap());
 }
 
 #[test]
@@ -16,7 +16,7 @@ fn test_day1b() {
         problem: "day1b".to_string(),
         filename: "./input/day1".to_string(),
     };
-    assert_eq!(answer::Answer::I(790), run::run(&config).unwrap());
+    assert_eq!(790, run::run(&config).unwrap());
 }
 
 #[test]
@@ -25,7 +25,7 @@ fn test_day2a() {
         problem: "day2a".to_string(),
         filename: "./input/day2".to_string(),
     };
-    assert_eq!(answer::Answer::U(6696), run::run(&config).unwrap());
+    assert_eq!(6696, run::run(&config).unwrap());
 }
 
 #[test]
@@ -34,10 +34,7 @@ fn test_day2b() {
         problem: "day2b".to_string(),
         filename: "./input/day2".to_string(),
     };
-    assert_eq!(
-        answer::Answer::S("bvnfawcnyoeyudzrpgslimtkj".to_string()),
-        run::run(&config).unwrap()
-    );
+    assert_eq!("bvnfawcnyoeyudzrpgslimtkj", run::run(&config).unwrap());
 }
 
 #[test]
@@ -46,7 +43,7 @@ fn test_day3a() {
         problem: "day3a".to_string(),
         filename: "./input/day3".to_string(),
     };
-    assert_eq!(answer::Answer::U(107820), run::run(&config).unwrap());
+    assert_eq!(107820, run::run(&config).unwrap());
 }
 
 #[test]
@@ -55,10 +52,7 @@ fn test_day3b() {
         problem: "day3b".to_string(),
         filename: "./input/day3".to_string(),
     };
-    assert_eq!(
-        answer::Answer::S("661".to_string()),
-        run::run(&config).unwrap()
-    );
+    assert_eq!("661", run::run(&config).unwrap());
 }
 
 #[test]
@@ -67,7 +61,7 @@ fn test_day4a() {
         problem: "day4a".to_string(),
         filename: "./input/day4".to_string(),
     };
-    assert_eq!(answer::Answer::U(94542), run::run(&config).unwrap());
+    assert_eq!(94542, run::run(&config).unwrap());
 }
 
 #[test]
@@ -76,7 +70,7 @@ fn test_day4b() {
         problem: "day4b".to_string(),
         filename: "./input/day4".to_string(),
     };
-    assert_eq!(answer::Answer::U(50966), run::run(&config).unwrap());
+    assert_eq!(50966, run::run(&config).unwrap());
 }
 
 #[test]
@@ -85,7 +79,7 @@ fn test_day5a() {
         problem: "day5a".to_string(),
         filename: "./input/day5".to_string(),
     };
-    assert_eq!(answer::Answer::US(11152), run::run(&config).unwrap());
+    assert_eq!(11152, run::run(&config).unwrap());
 }
 
 #[test]
@@ -94,7 +88,7 @@ fn test_day5b() {
         problem: "day5b".to_string(),
         filename: "./input/day5".to_string(),
     };
-    assert_eq!(answer::Answer::US(6136), run::run(&config).unwrap());
+    assert_eq!(6136, run::run(&config).unwrap());
 }
 
 #[test]
@@ -103,7 +97,7 @@ fn test_day6a() {
         problem: "day6a".to_string(),
         filename: "./input/day6".to_string(),
     };
-    assert_eq!(answer::Answer::US(3840), run::run(&config).unwrap());
+    assert_eq!(3840, run::run(&config).unwrap());
 }
 
 #[test]
@@ -112,7 +106,7 @@ fn test_day6b() {
         problem: "day6b".to_string(),
         filename: "./input/day6".to_string(),
     };
-    assert_eq!(answer::Answer::US(46542), run::run(&config).unwrap());
+    assert_eq!(46542, run::run(&config).unwrap());
 }
 
 #[test]
@@ -121,10 +115,7 @@ fn test_day7a() {
         problem: "day7a".to_string(),
         filename: "./input/day7".to_string(),
     };
-    assert_eq!(
-        answer::Answer::S("BFGKNRTWXIHPUMLQVZOYJACDSE".to_string()),
-        run::run(&config).unwrap()
-    );
+    assert_eq!("BFGKNRTWXIHPUMLQVZOYJACDSE", run::run(&config).unwrap());
 }
 
 #[test]
@@ -133,5 +124,5 @@ fn test_day7b() {
         problem: "day7b".to_string(),
         filename: "./input/day7".to_string(),
     };
-    assert_eq!(answer::Answer::U(1163), run::run(&config).unwrap());
+    assert_eq!(1163, run::run(&config).unwrap());
 }
